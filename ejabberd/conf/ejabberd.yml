@@ -1,0 +1,34 @@
+hosts:
+  - "iot-xmpp-chat.imd"
+
+loglevel: 4
+auth_method: internal
+
+acl:
+  admin:
+    user: 
+      - "admin" : "iot-xmpp-chat.imd"
+
+access_rules: 
+  configure:
+    allow: admin
+
+listen: 
+  -
+    port: 5222
+    module: ejabberd_c2s
+    starttls: false
+  -
+    port: 5280
+    module: ejabberd_http
+    request_handlers:
+      "/admin": ejabberd_web_admin
+
+s2s_use_starttls: false
+
+api_permissions:
+  "console commands":
+    from:
+      - ejabberd_ctl
+    who: all
+    what: "*"
