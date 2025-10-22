@@ -1,5 +1,8 @@
 hosts:
-  - "iot-xmpp-chat.imd"
+  - "iot.imd"
+
+certfiles:
+  - "/opt/ejabberd/tls/ip_server.pem"
 
 loglevel: 4
 auth_method: internal
@@ -7,24 +10,40 @@ auth_method: internal
 acl:
   admin:
     user: 
-      - "admin" : "iot-xmpp-chat.imd"
+      - "admin"
 
 access_rules: 
   configure:
     allow: admin
 
+modules:
+  mod_muc:
+    host: "conference.iot.dev"
+    access:
+      - allow
+    access_create: muc_create
+    access_admin: muc_admin
+    access_persistent: muc_admin
+    default_room_options:
+      persistent: true
+      public: true
+      max_users: 100
+
 listen: 
   -
     port: 5222
     module: ejabberd_c2s
-    starttls: false
+    starttls: true
+    certfile: "/opt/ejabberd/tls/ip_server.pem"
   -
     port: 5280
     module: ejabberd_http
+    tls: true
+    certfile: "/opt/ejabberd/tls/ip_server.pem"
     request_handlers:
       "/admin": ejabberd_web_admin
 
-s2s_use_starttls: false
+s2s_use_starttls: true
 
 api_permissions:
   "console commands":
