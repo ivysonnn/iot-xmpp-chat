@@ -11,7 +11,7 @@ C = BR
 ST = RN
 L = Natal
 O = IOT
-CN = 172.17.0.1
+CN = ; your IP
 
 [v3_req]
-subjectAltName = IP:172.17.0.1
+subjectAltName = IP: ; your IP
