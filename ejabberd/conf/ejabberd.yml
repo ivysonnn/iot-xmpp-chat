@@ -17,6 +17,7 @@ access_rules:
     allow: admin
 
 modules:
+  mod_roster: {}
   mod_muc:
     host: "conference.iot.dev"
     access:
