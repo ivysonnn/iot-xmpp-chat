@@ -18,17 +18,6 @@ access_rules:
 
 modules:
   mod_roster: {}
-  mod_muc:
-    host: "conference.iot.dev"
-    access:
-      - allow
-    access_create: muc_create
-    access_admin: muc_admin
-    access_persistent: muc_admin
-    default_room_options:
-      persistent: true
-      public: true
-      max_users: 100
 
 listen: 
   -
